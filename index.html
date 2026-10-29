@@ -291,25 +291,36 @@
       const data = Object.fromEntries(new FormData(this).entries());
 
       try {
-        // ЗАМЕНИТЕ YOUR_FORM_ID на свой ID из Formspree
-        const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        if (res.ok) {
-          status.textContent = 'Заявка отправлена! Мы свяжемся с вами в Telegram.';
-          this.reset();
-        } else {
-          status.textContent = 'Не удалось отправить. Попробуйте ещё раз.';
-        }
-      } catch {
-        status.textContent = 'Ошибка соединения. Попробуйте позже.';
-      }
-      btn.disabled = false;
-      btn.textContent = 'Отправить заявку';
-    });
-  </script>
+        <script>
+  document.getElementById('bookingForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const status = document.getElementById('formStatus');
+    const btn = this.querySelector('button');
+    status.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Отправляем...';
 
-</body>
-</html>
+    const data = Object.fromEntries(new FormData(this).entries());
+    const params = new URLSearchParams({
+      roblox: data.roblox_nick,
+      name: data.real_name,
+      date: data.travel_date,
+      tg: data.telegram_username
+    });
+
+    try {
+      const res = await fetch('https://script.google.com/macros/s/AKfycbwqOg234U-SHQexr2B4qmNvQDTL5IR4Ly8oxdLwBA0XoTGO8DBeL5uxdHJfvNT7mvNy/exec?' + params);
+      if (res.ok) {
+        status.textContent = 'Заявка отправлена! Мы свяжемся с вами в Telegram.';
+        this.reset();
+      } else {
+        status.textContent = 'Не удалось отправить. Попробуйте ещё раз.';
+      }
+    } catch {
+      status.textContent = 'Ошибка соединения. Попробуйте позже.';
+    }
+    btn.disabled = false;
+    btn.textContent = 'Отправить заявку';
+  });
+</script>
+

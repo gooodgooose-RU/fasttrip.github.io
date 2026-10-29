@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FastTrip — туристическое агентство</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      background: #ffffff;
+      color: #111111;
+      line-height: 1.6;
+    }
+
+    /* Шапка */
+    header {
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      z-index: 100;
+    }
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .logo span { color: #888; }
+    nav ul {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    nav a {
+      color: #111;
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    nav a:hover { color: #777; }
+
+    /* Главный блок */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 110px 24px 90px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -1px;
+    }
+    .hero p {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #666;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 36px;
+      padding: 14px 42px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: opacity .2s;
+    }
+    .btn:hover { opacity: 0.8; }
+
+    /* Секции */
+    section { max-width: 1100px; margin: 0 auto; padding: 70px 24px; }
+    .section-title {
+      font-size: 30px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .section-sub { color: #666; margin-bottom: 44px; font-size: 16px; }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .card {
+      border: 1px solid #e5e5e5;
+      padding: 36px 28px;
+      transition: border-color .2s;
+    }
+    .card:hover { border-color: #111; }
+    .card h3 { font-size: 19px; margin-bottom: 10px; }
+    .card p { color: #666; font-size: 15px; }
+    .card .price {
+      display: block;
+      margin-top: 20px;
+      font-weight: 700;
+      font-size: 17px;
+    }
+
+    .steps { display: grid; gap: 28px; }
+    .step { display: flex; gap: 20px; align-items: flex-start; }
+    .step .num {
+      font-size: 28px;
+      font-weight: 700;
+      color: #bbb;
+      min-width: 40px;
+    }
+
+    /* Форма */
+    .form-wrap {
+      max-width: 560px;
+      margin: 0 auto;
+      border: 1px solid #e5e5e5;
+      padding: 44px 36px;
+    }
+    .field { margin-bottom: 22px; }
+    .field label {
+      display: block;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .field input {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      font-family: inherit;
+      background: #fff;
+      color: #111;
+      outline: none;
+    }
+    .field input:focus { border-color: #111; }
+    .form-btn {
+      width: 100%;
+      padding: 15px;
+      background: #111;
+      color: #fff;
+      border: none;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity .2s;
+      font-family: inherit;
+    }
+    .form-btn:hover { opacity: 0.8; }
+    .form-status {
+      margin-top: 16px;
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+      min-height: 20px;
+    }
+    .privacy-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #999;
+      text-align: center;
+    }
+
+    /* Подвал */
+    footer {
+      border-top: 1px solid #e5e5e5;
+      padding: 36px 24px;
+      text-align: center;
+      color: #888;
+      font-size: 13px;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 34px; }
+      nav ul { gap: 16px; }
+      nav a { font-size: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav">
+      <div class="logo">Fast<span>Trip</span></div>
+      <nav>
+        <ul>
+          <li><a href="#tours">Направления</a></li>
+          <li><a href="#how">Как это работает</a></li>
+          <li><a href="#booking">Записаться</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero">
+    <h1>Путешествия,<br>спланированные идеально</h1>
+    <p>FastTrip подбирает туры под ваш ритм: от коротких выходных до длинных маршрутов. Никакой суеты — только чёткий план.</p>
+    <a href="#booking" class="btn">Оставить заявку</a>
+  </div>
+
+  <section id="tours">
+    <h2 class="section-title">Направления</h2>
+    <p class="section-sub">Популярные маршруты этого сезона</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Санкт-Петербург</h3>
+        <p>Развод мостов, Эрмитаж, прогулки по Невскому. 4 дня / 3 ночи.</p>
+        <span class="price">от 28 000 ₽</span>
+      </div>
+      <div class="card">
+        <h3>Сочи</h3>
+        <p>Море, горы и Красная Поляна. 7 дней / 6 ночей.</p>
+        <span class="price">от 42 000 ₽</span>
+      </div>
+      <div class="card">
+        <h3>Казань</h3>
+        <p>Кремль, Кремлёвская набережная, гастротур. 3 дня / 2 ночи.</p>
+        <span class="price">от 19 000 ₽</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <h2 class="section-title">Как это работает</h2>
+    <p class="section-sub">Три шага до подтверждённой брони</p>
+    <div class="steps">
+      <div class="step"><div class="num">01</div><div><h3>Заявка</h3><p>Вы оставляете заявку через форму — мы получаем её моментально.</p></div></div>
+      <div class="step"><div class="num">02</div><div><h3>Связь</h3><p>Менеджер пишет вам в Telegram в течение рабочего дня и уточняет детали.</p></div></div>
+      <div class="step"><div class="num">03</div><div><h3>Подтверждение</h3><p>Согласуем маршрут и даты — поездка забронирована.</p></div></div>
+    </div>
+  </section>
+
+  <section id="booking">
+    <h2 class="section-title">Записаться на тур</h2>
+    <p class="section-sub">Заполните форму — и мы свяжемся с вами</p>
+    <div class="form-wrap">
+      <form id="bookingForm">
+        <div class="field">
+          <label for="roblox">Ник в Roblox</label>
+          <input type="text" id="roblox" name="roblox_nick" required placeholder="Например: ProTraveler_2007">
+        </div>
+        <div class="field">
+          <label for="name">Ваше имя</label>
+          <input type="text" id="name" name="real_name" required placeholder="Иван Петров">
+        </div>
+        <div class="field">
+          <label for="date">Дата</label>
+          <input type="date" id="date" name="travel_date" required>
+        </div>
+        <div class="field">
+          <label for="tg">Юзернейм в Telegram</label>
+          <input type="text" id="tg" name="telegram_username" required placeholder="@username">
+        </div>
+        <button type="submit" class="form-btn">Отправить заявку</button>
+        <div class="form-status" id="formStatus"></div>
+        <p class="privacy-note">Отправляя заявку, вы соглашаетесь на обработку указанных данных для связи с вами.</p>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    FastTrip © 2026 · Все права защищены
+  </footer>
+
+  <script>
+    document.getElementById('bookingForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      const status = document.getElementById('formStatus');
+      const btn = this.querySelector('button');
+      status.textContent = '';
+      btn.disabled = true;
+      btn.textContent = 'Отправляем...';
+
+      const data = Object.fromEntries(new FormData(this).entries());
+
+      try {
+        // ЗАМЕНИТЕ YOUR_FORM_ID на свой ID из Formspree
+        const res = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          status.textContent = 'Заявка отправлена! Мы свяжемся с вами в Telegram.';
+          this.reset();
+        } else {
+          status.textContent = 'Не удалось отправить. Попробуйте ещё раз.';
+        }
+      } catch {
+        status.textContent = 'Ошибка соединения. Попробуйте позже.';
+      }
+      btn.disabled = false;
+      btn.textContent = 'Отправить заявку';
+    });
+  </script>
+
+</body>
+</html>
